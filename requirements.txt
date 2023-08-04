@@ -1,0 +1,12 @@
+requests
+adblockparser
+multidict
+networkx
+numpy
+openwpm_utils
+pandas
+pymysql
+python_Levenshtein
+PyYAML
+tldextract
+tqdm
