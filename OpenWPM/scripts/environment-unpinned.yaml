@@ -1,0 +1,33 @@
+name: openwpm
+channels:
+    - conda-forge
+    - main
+dependencies:
+    - beautifulsoup4
+    - click
+    - dill
+    # - firefox-unbranded - when it's available
+    - gcsfs
+    - geckodriver
+    - leveldb
+    - multiprocess
+    - nodejs==14.*.*
+    - pandas
+    - pip
+    - pillow
+    - psutil
+    - pyarrow
+    - python
+    - pyvirtualdisplay
+    - redis-py
+    - s3fs
+    - selenium
+    - sentry-sdk
+    - tabulate
+    - tblib
+    - wget
+    - pip:
+      - jsonschema
+      - plyvel
+      - domain-utils
+      - dataclasses-json
