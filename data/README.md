@@ -1,0 +1,6 @@
+# List of Tracking Link Decorations Identified by PURL
+This folder contains the list of tracking link decorations identified by PURL. Following is the naming format followed for each link decoration.
+
+1. For query parameters, the naming convention is ```website||destination_domain||key```. Here the ```website``` refers to the website on which the tracking query parameter was found. ```destination_domain``` is the domain of the endpoint to which the request containing the query parameter was sent to. Finally, the ```key``` points towards the key of the query parameter.
+2. For resource paths, the naming convention is ```website||destination_domain||path||depth```. Each resource path entry is identified by presence of path after the destination domain, while the ```depth``` of the resource path is counted from the end of fully qualified domain name. For example, consider the following URL: ```https://example.com/test/source?id=XXXX```. Here the two resource paths will be represented as ```website||example.com||path|0``` for test, and  ```website||example.com||path|0``` for source.
+3. For fragments, the naming convention is simply ```website||destination_domain||fragment```. This convention is valid for single value fragments. For fragment which are in the form of key value pairs, we expand them and treat them in the same manner as query parameters. 
