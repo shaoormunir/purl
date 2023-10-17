@@ -27,8 +27,8 @@ def clean_up_final_label(label):
 
 def get_categories():
 
-	df_cookiepedia = pd.read_csv("/Users/siby/Documents/webgraph_optimized/labelling_scripts/cookiepedia.csv", index_col=0)
-	df_tranco = pd.read_csv("/Users/siby/Documents/webgraph_optimized/labelling_scripts/tranco.csv", index_col=0)
+	df_cookiepedia = pd.read_csv("cookiepedia.csv", index_col=0)
+	df_tranco = pd.read_csv("tranco.csv", index_col=0)
 
 	#df_cookiepedia = pd.read_csv("/home/siby/webgraph_optimized/labelling_scripts/cookiepedia.csv", index_col=0)
 	#df_tranco = pd.read_csv("/home/siby/webgraph_optimized/labelling_scripts/tranco.csv", index_col=0)
@@ -55,9 +55,7 @@ def process_declared_labels():
     return df_labels
 
 def get_cookiepedia_categories():
-
-	URL = "https://raw.githubusercontent.com/shaoormunir/cookiewatcher-groundtruth/main/cookies_categories_updated.csv?token=AAGTHXNTOH6LH4P56CLLPTTB22WRG"
-	df_cookiepedia = pd.read_table(URL, sep=",")
+	df_cookiepedia = pd.read_csv('cookies_categories_updated.csv')
 	return df_cookiepedia
 
 def label_cookiepedia_data(category):
