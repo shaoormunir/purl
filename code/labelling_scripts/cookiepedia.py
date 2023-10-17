@@ -30,9 +30,6 @@ def get_categories():
 	df_cookiepedia = pd.read_csv("cookiepedia.csv", index_col=0)
 	df_tranco = pd.read_csv("tranco.csv", index_col=0)
 
-	#df_cookiepedia = pd.read_csv("/home/siby/webgraph_optimized/labelling_scripts/cookiepedia.csv", index_col=0)
-	#df_tranco = pd.read_csv("/home/siby/webgraph_optimized/labelling_scripts/tranco.csv", index_col=0)
-
 	df_cookiepedia = df_cookiepedia[['name', 'domain', 'cat_id']]
 	df_tranco = df_tranco[['name', 'domain', 'cat_id']]
 
