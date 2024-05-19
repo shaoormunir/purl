@@ -21,7 +21,7 @@ starting_index = 0
 LOG_FILE = "multi-crawl.log"
 
 
-df = pd.read_csv('sites.csv')
+df = pd.read_csv("sites.csv")
 
 # open the log file in append mode
 with open(LOG_FILE, "a") as log_file:
@@ -30,15 +30,17 @@ with open(LOG_FILE, "a") as log_file:
         log_file.flush()
 
         if i != 9000:
-            sites  = df['url'][i:i+1000].tolist()
+            sites = df["url"][i : i + 1000].tolist()
         else:
-            sites = df['url'][i:].tolist()
+            sites = df["url"][i:].tolist()
 
         # Loads the default ManagerParams
         # and NUM_BROWSERS copies of the default BrowserParams
 
         manager_params = ManagerParams(num_browsers=NUM_BROWSERS)
-        browser_params = [BrowserParams(display_mode="headless") for _ in range(NUM_BROWSERS)]
+        browser_params = [
+            BrowserParams(display_mode="headless") for _ in range(NUM_BROWSERS)
+        ]
 
         # Update browser configuration (use this for per-browser settings)
         for browser_param in browser_params:
@@ -57,9 +59,9 @@ with open(LOG_FILE, "a") as log_file:
             # save the javascript files
             browser_param.save_content = "script"
             # allow third party cookies
-            browser_param.tp_cookies = 'never'
+            browser_param.tp_cookies = "never"
             # Prevent any response by server due to bot detection
-            browser_param.bot_mitigation  = True
+            browser_param.bot_mitigation = True
 
         # Update TaskManager configuration (use this for crawl-wide settings)
         manager_params.data_directory = Path(f"./datadir-{i}/")
@@ -69,7 +71,6 @@ with open(LOG_FILE, "a") as log_file:
         # Please refer to docs/Configuration.md#platform-configuration-options for more information
         # manager_params.memory_watchdog = True
         # manager_params.process_watchdog = True
-
 
         # Commands time out by default after 60 seconds
         with TaskManager(
@@ -94,12 +95,14 @@ with open(LOG_FILE, "a") as log_file:
                 )
 
                 # Start by visiting the page
-                command_sequence.append_command(GetCommand(url=site, sleep=3), timeout=60)
+                command_sequence.append_command(
+                    GetCommand(url=site, sleep=3), timeout=60
+                )
                 # Have a look at custom_command.py to see how to implement your own command
                 command_sequence.append_command(LinkCountingCommand())
 
                 # Run commands across all browsers (simple parallelization)
                 manager.execute_command_sequence(command_sequence)
-        
+
         log_file.write(f"Finished crawl {i} to {i+1000}\n")
         log_file.flush()

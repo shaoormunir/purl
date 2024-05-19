@@ -517,9 +517,7 @@ def pipeline(db_file, features_file, ldb_file, tag):
 
 if __name__ == "__main__":
     # get the features file, the dataset folder and the output folder from the command line\
-    parser = argparse.ArgumentParser(
-        description="Process the Graph features for Link Dedecorator."
-    )
+    parser = argparse.ArgumentParser(description="Process the Graph features for PURL.")
     parser.add_argument(
         "--features", type=str, default="features_new.yaml", help="the features file"
     )
@@ -541,7 +539,6 @@ if __name__ == "__main__":
     # LDB_FILE = os.path.join(FOLDER, "content.ldb")
 
     # pipeline(DB_FILE, FEATURES_FILE, LDB_FILE, TAG)
-
 
     for i in range(0, 20000, 1000):
         print("Processing:", i)
