@@ -26,14 +26,17 @@ if [ "$1" != "--skip-create" ]; then
   echo 'Creating / Overwriting openwpm conda environment.'
   # `PYTHONNOUSERSITE` set so python ignores local user site libraries when building the env
   # See: https://github.com/mozilla/OpenWPM/pull/682#issuecomment-645648939
-  PYTHONNOUSERSITE=True conda env create --force -q -f environment.yaml -vv
+  conda env remove --name openwpm -y || true
+  PYTHONNOUSERSITE=True conda env create --yes -q -f environment.yaml -v
 fi
 
 echo 'Activating environment.'
 conda activate openwpm
 
-# echo 'Installing firefox.'
-# ./scripts/install-firefox.sh
+python3 -m pip install python_levenshtein adblockparser openwpm_utils
+
+echo 'Installing firefox.'
+./scripts/install-firefox.sh
 
 echo 'Building extension.'
 ./scripts/build-extension.sh

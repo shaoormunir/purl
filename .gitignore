@@ -1,1 +1,14 @@
 .DS_Store
+OpenWPM/firefox-bin/*
+OpenWPM/Extension/*
+OpenWPM/datadir-*/*
+OpenWPM/openwpm/__pycache__/*
+multi-crawl.log
+OpenWPM/__pycache__/*
+OpenWPM/openwpm/commands/__pycache__/*
+OpenWPM/openwpm/commands/utils/__pycache__/*
+OpenWPM/openwpm/storage/__pycache__/*
+OpenWPM/openwpm/utilities/__pycache__/*
+OpenWPM/openwpm/deploy_browsers/__pycache__/*
+OpenWPM/Extension/firefox/package-lock.json
+OpenWPM/Extension/webext-instrumentation/package-lock.json

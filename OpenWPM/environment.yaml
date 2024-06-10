@@ -35,6 +35,18 @@ dependencies:
 - tabulate=0.8.9
 - tblib=1.7.0
 - wget=1.20.3
+- requests
+# - adblockparser
+- multidict
+- networkx
+- numpy
+# - openwpm_utils
+- pandas
+- pymysql
+# - python_Levenshtein
+- PyYAML
+- tldextract
+- tqdm
 - pip:
   - dataclasses-json==0.5.4
   - domain-utils==0.7.1
