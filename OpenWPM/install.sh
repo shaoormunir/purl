@@ -33,7 +33,7 @@ fi
 echo 'Activating environment.'
 conda activate openwpm
 
-python3 -m pip install python_levenshtein adblockparser openwpm_utils
+python3 -m pip install python_levenshtein adblockparser openwpm_utils PyEnchant leveldb
 
 echo 'Installing firefox.'
 ./scripts/install-firefox.sh

@@ -47,12 +47,18 @@ dependencies:
 - PyYAML
 - tldextract
 - tqdm
+- pandarallel
+- enchant
+- hunspell-en
+- scikit-learn
 - pip:
   - dataclasses-json==0.5.4
   - domain-utils==0.7.1
+  - treeinterpreter=0.2.3
   - jsonschema==3.2.0
   - plyvel==1.3.0
   - types-pyyaml==5.4.3
   - types-redis==3.5.4
   - types-tabulate==0.1.1
+  - imblearn
 name: openwpm

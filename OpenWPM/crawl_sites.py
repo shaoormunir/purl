@@ -133,6 +133,7 @@ if __name__ == "__main__":
         "--starting_index",
         type=int,
         help="Starting index to start crawling from",
+        default=0,
     )
     parser.add_argument(
         "--log_file",
