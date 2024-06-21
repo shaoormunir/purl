@@ -652,7 +652,6 @@ if __name__ == "__main__":
         type=str,
         default=f"results/{datetime.datetime.now().strftime('%m-%d-%H-%M')}",
     )
-    parser.add_argument("--generate-filterlist", action=argparse.BooleanOptionalAction)
 
     args = parser.parse_args()
 
@@ -660,7 +659,6 @@ if __name__ == "__main__":
     LABEL_PATH = args.label_base_path
     RESULT_DIR = args.result_dir
     ITERATIONS = args.iterations
-    FILTERLIST = args.generate_filterlist
 
     # recursively create result_dir if it does not exist
     if not os.path.exists(RESULT_DIR):
