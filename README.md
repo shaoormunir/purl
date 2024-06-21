@@ -58,10 +58,12 @@ python3 run.py --features <path_to_feature_file> --folder <crawl_data_folder> --
 - `--tag`: Tag to add to the output files. This helps differentiate between multiple experiments.
 
 Running this command will generate four files for each run of crawled data:
-- `features_0.csv`
-- `graph_0.csv`
-- `exfils_0.csv`
-- `labels_0.csv`
+- `features_n.csv`
+- `graph_n.csv`
+- `exfils_n.csv`
+- `labels_n.csv`
+
+Where ```n``` is the index of the run.
 
 These files will be stored in the same directory as the `run.py` script.
 
