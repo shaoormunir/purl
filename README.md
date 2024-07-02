@@ -54,7 +54,7 @@ python3 run.py --features <path_to_feature_file> --folder <crawl_data_folder> --
 
 ### Explanation of Arguments:
 - `--features`: Path to the file containing the features to extract (default: `features_new.yaml`).
-- `--folder`: Path to the folder where the crawl data was stored. For example, if the data was stored in a `datadir` directory within the `OpenWPM` folder, the path should be `../OpenWPM/datadir`.
+- `--input_data`: Path to the folder where the crawl data was stored. For example, if the data was stored in a `datadir` directory within the `OpenWPM` folder, the path should be `../OpenWPM/datadir`.
 - `--tag`: Tag to add to the output files. This helps differentiate between multiple experiments.
 
 Running this command will generate four files for each run of crawled data:
