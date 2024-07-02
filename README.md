@@ -31,7 +31,7 @@ https://www.example2.com
 
 With your `.csv` file ready, run the crawl using the following command from within the `OpenWPM` folder:
 ```bash
-python3 crawl_websites.py --websites <path_to_csv_file> --output_dir <output_directory> --num_browsers <number_of_browsers> --starting_index <starting_index> --log_file <log_file> --third_party_cookies <always|never>
+python3 crawl_sites.py --websites <path_to_csv_file> --output_dir <output_directory> --num_browsers <number_of_browsers> --starting_index <starting_index> --log_file <log_file> --third_party_cookies <always|never>
 ```
 
 ### Explanation of Arguments:
