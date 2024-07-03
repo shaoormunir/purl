@@ -645,7 +645,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--feature_base_path", type=str, default="../features_")
-    parser.add_argument("--label_base_path", type=str, default="../labels_new_")
+    parser.add_argument("--label_base_path", type=str, default="../labels_")
     parser.add_argument("--iterations", type=int, default=1)
     parser.add_argument(
         "--result_dir",

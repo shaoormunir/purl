@@ -504,7 +504,7 @@ def pipeline(db_file, features_file, ldb_file, tag):
     graph_fname = "graph_" + str(tag) + ".csv"
     df = pd.read_csv(graph_fname)
     df_labelled = ls.label_decorations(df, df_exfils, filterlists, filterlist_rules)
-    labels_fname = "labels_new_" + str(tag) + ".csv"
+    labels_fname = "labels_" + str(tag) + ".csv"
     if not os.path.exists(labels_fname):
         df_labelled.to_csv(labels_fname)
     else:

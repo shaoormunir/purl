@@ -5,7 +5,8 @@ from urllib.parse import urlparse
 import pandas as pd
 from pandarallel import pandarallel
 
-pandarallel.initialize(progress_bar=True, nb_workers=64)
+# initialize pandarallel to use maxmimum number of cores
+pandarallel.initialize(progress_bar=True)
 import os
 import requests
 from tqdm.auto import tqdm
@@ -555,13 +556,13 @@ def label_decorations(df, df_exfils, filterlists, filterlist_rules):
     df_decoration_edges_unique["request_domain"] = df_decoration_edges_unique[
         "request_url"
     ].apply(get_domain)
-    df_decoration_edges_unique[
-        "request_label"
-    ] = df_decoration_edges_unique.parallel_apply(
-        label_request,
-        filterlists=filterlists,
-        filterlist_rules=filterlist_rules,
-        axis=1,
+    df_decoration_edges_unique["request_label"] = (
+        df_decoration_edges_unique.parallel_apply(
+            label_request,
+            filterlists=filterlists,
+            filterlist_rules=filterlist_rules,
+            axis=1,
+        )
     )
     # df_decoration_edges_unique['request_label'] = False
 
@@ -587,10 +588,10 @@ def label_decorations(df, df_exfils, filterlists, filterlist_rules):
         df_decoration_edges_unique["decoration_name"].notna()
     ]
     df_decoration_edges_unique = df_decoration_edges_unique.drop_duplicates()
-    df_decoration_edges_unique[
-        "decoration_label"
-    ] = df_decoration_edges_unique.parallel_apply(
-        lambda x: label_decoration(x["decoration_name"], x["request_url"]), axis=1
+    df_decoration_edges_unique["decoration_label"] = (
+        df_decoration_edges_unique.parallel_apply(
+            lambda x: label_decoration(x["decoration_name"], x["request_url"]), axis=1
+        )
     )
 
     # print(df_decoration_edges.columns)
@@ -655,7 +656,6 @@ def label_decorations(df, df_exfils, filterlists, filterlist_rules):
 
     # print('is_identifier')
     # print(df_decoration_edges.is_identifier.value_counts())
-
 
     df_decoration_edges["label"] = df_decoration_edges.parallel_apply(
         get_final_label, axis=1
