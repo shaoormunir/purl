@@ -106,10 +106,11 @@ A few important files that are produced as a result of this step are:
 
 1. ```accuracy``` this file contains the accuracy metrics of each fold of training step. This can be used to determine the best model to pick for the next step (another file ```scores``` contains the confusion matrices for each fold for more information). The accuracy number here is calculated against the ground truth which is described in detail in Section 4.1 of the accepted paper.
 
-2. ```Files tp_n```, where n ranges from 0 to 9 shows the predictions of the each trained model in a fold against the selected test data. The resulting file has the following structure:
+2. ```tp_n```, where n ranges from 0 to 9 shows the predictions of the each trained model in a fold against the selected test data. The resulting file has the following structure:
+   
 ```Ground Truth Label``` |\$| ```Model Prediction``` |\$| ```Link Decoration Name``` |\$| ```Visit ID```
 
-3. ```model_n.sav```, where n ranges from 0 to 9, are the checkpoints of the trained models. These checkpoints can be used to run the best performing model in the next step.
+4. ```model_n.sav```, where n ranges from 0 to 9, are the checkpoints of the trained models. These checkpoints can be used to run the best performing model in the next step.
 
 ## Step 5: Run the Best Model on the Complete Dataset
 
@@ -134,14 +135,14 @@ Running step 5 will produce three different files:
 
 1. ```filterlist.txt``` this will contain all the tracking link decorations along with the website on which they were observed, to be easily used to block such link decorations.
 2. ```results.csv``` this contains information about each link decoration and the label assigned to the link decoration by the model. The CSV file contains three major pieces of information: features of the link decoration as observed during crawl, the label of link decoration in Ground Truth (Negative for non-tracking, Positive for tracking, and Unknown if missing in ground truth), and the label assigned by the model.
-3. ```feature importance``` This file contains the most important features used by the model to identify tracking link decorations, this is related to the results discussed in Appendix of the accepted paper.
+3. ```feature importance``` This file contains the most important features used by the model to identify tracking link decorations, this is related to the results discussed in Appendix of the cited paper.
 
 ### Additional Notes
 Following are the two major claims of the paper "PURL: Safe and Effective Sanitization of Link Decoration" that can be verified using the results of the pipeline:
 
-1. PURL can effectively identify tracking link decorations: This can be verified by checking the accuracy of the model on the test data. The accuracy of the model can be found in the ```accuracy``` file generated in step 4. PURL achieves 98% accuracy in classifying tracking link decorations.
+1. **PURL can effectively identify tracking link decorations:** This can be verified by checking the accuracy of the model on the test data. The accuracy of the model can be found in the ```accuracy``` file generated in step 4. PURL achieves 98% accuracy in classifying tracking link decorations.
 
-2. PURL can generate a filter list to sanitize tracking link decorations: This can be verified by checking the filterlist generated in step 5. The filterlist contains all the tracking link decorations along with the website on which they were observed. The filterlist can be used to block such link decorations.
+2. **PURL can generate a filter list to sanitize tracking link decorations:** This can be verified by checking the filterlist generated in step 5. The filterlist contains all the tracking link decorations along with the website on which they were observed. The filterlist can be used to block such link decorations.
 
 ### Citation
 This repository contains the code for the paper "PURL: Safe and Effective Sanitization of Link Decoration" accepted at the 31st USENIX Security Symposium. If you use this code, please consider citing the following paper:
