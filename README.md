@@ -65,7 +65,7 @@ python3 crawl_sites.py --websites <path_to_csv_file> --output_dir <output_direct
 The next step involves generating a graph and its corresponding features for each website. To do this, navigate to the `Pipeline` folder and run the following command:
 ```bash
 cd ../Pipeline
-python3 run.py --features <path_to_feature_file> --folder <crawl_data_folder> --tag <file_tag>
+python3 run.py --features <path_to_feature_file> --input_data <crawl_data_folder> --tag <file_tag>
 ```
 If running the above command results in following error: ```OSError: "enchant-2: cannot read file data: Is a directory```, then run this command first: ```sudo apt install libenchant-2-dev && export PYENCHANT_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/libenchant-2.so```.
 
