@@ -145,7 +145,7 @@ Following are the two major claims of the paper "PURL: Safe and Effective Saniti
 2. **PURL can generate a filter list to sanitize tracking link decorations:** This can be verified by checking the filterlist generated in step 5. The filterlist contains all the tracking link decorations along with the website on which they were observed. The filterlist can be used to block such link decorations.
 
 ### Citation
-This repository contains the code for the paper "PURL: Safe and Effective Sanitization of Link Decoration" accepted at the 31st USENIX Security Symposium. If you use this code, please consider citing the following paper:
+This repository contains the code for the paper "PURL: Safe and Effective Sanitization of Link Decoration" accepted at the 33rd USENIX Security Symposium. If you use this code, please consider citing the following paper:
 
 ```
 @misc{munir2024purl,
