@@ -170,7 +170,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--feature_base_path", type=str, default="../features_")
-    parser.add_argument("--label_base_path", type=str, default="../labels_new_")
+    parser.add_argument("--label_base_path", type=str, default="../labels_")
     parser.add_argument("--iterations", type=int, default=1)
     parser.add_argument(
         "--result_dir",
@@ -198,10 +198,15 @@ if __name__ == "__main__":
 
     for i in tqdm(range(0, ITERATIONS * 1000, 1000)):
         df_features.append(pd.read_csv(f"{FEATURE_PATH}{i}.csv"))
-        df_labels.append(pd.read_csv(f"{LABEL_PATH}{i}.csv"))
+        df_labels.append(
+            pd.read_csv(f"{LABEL_PATH}{i}.csv", usecols=["visit_id", "name", "label"])
+        )
 
     df_features = pd.concat(df_features)
     df_labels = pd.concat(df_labels)
+
+    df_features.drop_duplicates(subset=["name"], keep="first", inplace=True)
+    df_labels.drop_duplicates(subset=["name"], keep="first", inplace=True)
 
     df = df_features.merge(df_labels[["name", "label"]], on=["name"])
 

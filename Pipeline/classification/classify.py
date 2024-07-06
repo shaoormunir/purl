@@ -390,24 +390,24 @@ def classify_unknown(df_train, df_test, result_dir):
             f.write("%s |$| %s |$| %s\n" % (y_pred[i], name[i], vid[i]))
 
     preds, bias, contributions = ti.predict(clf, df_feature_test)
-    fname = os.path.join(result_dir, "interpretations")
-    with open(fname, "w") as f:
-        data_dict = {}
-        for i in range(len(df_feature_test)):
-            name = test_mani.iloc[i]["name"]
-            vid = str(test_mani.iloc[i]["visit_id"])
-            key = str(name) + "_" + str(vid)
-            data_dict[key] = {}
-            data_dict[key]["name"] = name
-            data_dict[key]["vid"] = vid
-            c = list(contributions[i, :, 0])
-            c = [round(float(x), 2) for x in c]
-            fn = list(columns)
-            fn = [str(x) for x in fn]
-            feature_contribution = list(zip(c, fn))
-            # feature_contribution = list(zip(contributions[i,:,0], df_feature_test.columns))
-            data_dict[key]["contributions"] = feature_contribution
-        f.write(json.dumps(data_dict, indent=4))
+    # fname = os.path.join(result_dir, "interpretations")
+    # with open(fname, "w") as f:
+    #     data_dict = {}
+    #     for i in range(len(df_feature_test)):
+    #         name = test_mani.iloc[i]["name"]
+    #         vid = str(test_mani.iloc[i]["visit_id"])
+    #         key = str(name) + "_" + str(vid)
+    #         data_dict[key] = {}
+    #         data_dict[key]["name"] = name
+    #         data_dict[key]["vid"] = vid
+    #         c = list(contributions[i, :, 0])
+    #         c = [round(float(x), 2) for x in c]
+    #         fn = list(columns)
+    #         fn = [str(x) for x in fn]
+    #         feature_contribution = list(zip(c, fn))
+    #         # feature_contribution = list(zip(contributions[i,:,0], df_feature_test.columns))
+    #         data_dict[key]["contributions"] = feature_contribution
+    #     f.write(json.dumps(data_dict, indent=4))
 
 
 def classify_validation(
@@ -485,9 +485,12 @@ def pipeline(df_features, df_labels, result_dir):
     if not os.path.exists(result_dir):
         os.mkdir(result_dir)
 
+    print("Starting Pipeline")
     df = df_features.merge(df_labels[["name", "label"]], on=["name"])
-    df = df.drop_duplicates()
-    df = df.reset_index(drop=True)
+    print("Number of samples: ", len(df))
+    df.drop_duplicates(subset=["name"], keep="first", inplace=True)
+    df.reset_index(drop=True, inplace=True)
+    print("Number of samples after dropping duplicates: ", len(df))
 
     df["party"] = df["name"].apply(label_party)
 
@@ -565,10 +568,10 @@ def pipeline(df_features, df_labels, result_dir):
     )
     report = describe_classif_reports(results, valid_result_dir)
 
-    # Unknown labels
-    unknown_result_dir = os.path.join(result_dir, "unlabelled")
-    os.mkdir(unknown_result_dir)
-    classify_unknown(df_labelled, df_unknown, unknown_result_dir)
+    # # Unknown labels
+    # unknown_result_dir = os.path.join(result_dir, "unlabelled")
+    # os.mkdir(unknown_result_dir)
+    # classify_unknown(df_labelled, df_unknown, unknown_result_dir)
 
 
 def change_label_setter(setter_label):
@@ -669,9 +672,14 @@ if __name__ == "__main__":
 
     for i in tqdm(range(0, ITERATIONS * 1000, 1000)):
         df_features.append(pd.read_csv(f"{FEATURE_PATH}{i}.csv"))
-        df_labels.append(pd.read_csv(f"{LABEL_PATH}{i}.csv"))
+        df_labels.append(
+            pd.read_csv(f"{LABEL_PATH}{i}.csv", usecols=["visit_id", "name", "label"])
+        )
 
     df_features = pd.concat(df_features)
     df_labels = pd.concat(df_labels)
+
+    df_features.drop_duplicates(subset=["name"], keep="first", inplace=True)
+    df_labels.drop_duplicates(subset=["name"], keep="first", inplace=True)
 
     pipeline(df_features, df_labels, RESULT_DIR)
