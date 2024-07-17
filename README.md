@@ -121,7 +121,7 @@ cd classification
 
 Execute the following command:
 ```bash
-python3 classify_with_model.py --result_dir <result_directory> --model_path <model_save_file_path> --iterations <number_of_iterations> --generate-filterlist/--no-generate-filterlist
+python3 classify_with_model.py --result_dir <result_directory> --model_path <model_save_file_path> --iterations <number_of_iterations> --generate-filterlist/--no-generate-filterlist --label_base_path <base_path_for_labels>
 ```
 
 ### Explanation of Arguments:
@@ -129,7 +129,7 @@ python3 classify_with_model.py --result_dir <result_directory> --model_path <mod
 - `--model_path`: Path to the saved model file, this model is the best performing model from the previous step (based on accuracy score or any other chosen metric).
 - `--iterations`: Number of iterations needed to cover the complete dataset.
 - `--generate-filterlist/--no-generate-filterlist`: Option to generate a filterlist based on the model results (`--generate-filterlist` or `--no-generate-filterlist`).
-
+- `--label_base_path`: The base directory and file name path for the labels. For example, if the labels are stored in `../Data/`, and the labels are named `labels_0.csv`, `labels_1.csv`, etc., the base path would be `../Data/labels_`.
 
 Running step 5 will produce three different files:
 
@@ -143,6 +143,28 @@ Following are the two major claims of the paper "PURL: Safe and Effective Saniti
 1. **PURL can effectively identify tracking link decorations:** This can be verified by checking the accuracy of the model on the test data. The accuracy of the model can be found in the ```accuracy``` file generated in step 4. PURL achieves 98% accuracy in classifying tracking link decorations.
 
 2. **PURL can generate a filter list to sanitize tracking link decorations:** This can be verified by checking the filterlist generated in step 5. The filterlist contains all the tracking link decorations along with the website on which they were observed. The filterlist can be used to block such link decorations.
+
+## Data for 20,000 Websites
+To facilitate researchers, we have provided the data for 20,000 websites that can be used to run the steps 4 and 5 of the pipeline. The data can be downloaded from the following link: [20,000 Websites Data](https://zenodo.org/records/12667973).
+
+This Zenodo record contains the following files:
+
+1. ```graph_n.csv```
+2. ```features_n.csv```
+3. ```labels_new_n.csv```
+
+Where n ranges from 0 to 19. These files can be used to run the classification pipeline for PURL.
+
+After downloading the tar files from the record link, copy them in the Pipeline folder, and run the following commands to run steps 4 and 5.
+
+```bash
+ls *tar.xz |xargs -n1 tar -xvzf
+
+cd classification && python3 classify.py --label_base_path "../labels_new_" --iterations 20
+
+python3 classify_with_model.py --model_path <model_path> --generate-filterlist --label_base_path "../labels_new_" --iterations 20
+```
+
 
 ### Citation
 This repository contains the code for the paper "PURL: Safe and Effective Sanitization of Link Decoration" accepted at the 33rd USENIX Security Symposium. If you use this code, please consider citing the following paper:
