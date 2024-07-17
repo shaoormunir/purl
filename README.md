@@ -145,7 +145,7 @@ Following are the two major claims of the paper "PURL: Safe and Effective Saniti
 2. **PURL can generate a filter list to sanitize tracking link decorations:** This can be verified by checking the filterlist generated in step 5. The filterlist contains all the tracking link decorations along with the website on which they were observed. The filterlist can be used to block such link decorations.
 
 ## Data for 20,000 Websites
-To facilitate researchers, we have provided the data for 20,000 websites that can be used to run the steps 4 and 5 of the pipeline. The data can be downloaded from the following link: [20,000 Websites Data](https://zenodo.org/records/12667973).
+To facilitate researchers, we have provided the data for 20,000 websites that can be used to run the steps 4 and 5 of the pipeline. The data can be downloaded from the following link: [PURL 20,000 Websites Data](https://zenodo.org/records/12667973).
 
 This Zenodo record contains the following files:
 
