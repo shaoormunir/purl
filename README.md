@@ -170,13 +170,14 @@ python3 classify_with_model.py --model_path <model_path> --generate-filterlist -
 This repository contains the code for the paper "PURL: Safe and Effective Sanitization of Link Decoration" accepted at the 33rd USENIX Security Symposium. If you use this code, please consider citing the following paper:
 
 ```
-@misc{munir2024purl,
-    title={PURL: Safe and Effective Sanitization of Link Decoration},
-    author={Shaoor Munir and Patrick Lee and Umar Iqbal and Zubair Shafiq and Sandra Siby},
-    year={2024},
-    eprint={2308.03417},
-    archivePrefix={arXiv},
-    primaryClass={cs.CR},
-    url={https://arxiv.org/abs/2308.03417}
+@inproceedings{299762,
+  author    = {Shaoor Munir and Patrick Lee and Umar Iqbal and Zubair Shafiq and Sandra Siby},
+  title     = {{PURL}: Safe and Effective Sanitization of Link Decoration},
+  booktitle = {33rd USENIX Security Symposium (USENIX Security 24)},
+  year      = {2024},
+  address   = {Philadelphia, PA},
+  url       = {https://www.usenix.org/conference/usenixsecurity24/presentation/munir},
+  publisher = {USENIX Association},
+  month     = aug
 }
 ```
